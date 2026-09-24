@@ -21,8 +21,9 @@ background:rgba(255,255,255,.16);color:#fff}
 .row{display:flex;align-items:center;gap:10px;background:#fff;border-radius:10px;
 padding:11px 10px 11px 13px;margin-bottom:6px;box-shadow:0 1px 2px rgba(20,35,60,.07)}
 .row.on{background:#fff5e8;box-shadow:0 0 0 1.5px #c98a3c inset}
-.row.zero{opacity:.5}
+.row.zero{opacity:.45}
 .nm{flex:1;min-width:0;font-size:15.5px;font-weight:600}
+.usual{display:block;font-size:11.5px;color:#a0a9b8;font-weight:400;margin-top:1px}
 input[type=number]{width:74px;flex:none;padding:11px 6px;text-align:center;font-size:17px;
 font-weight:700;border:1.5px solid #ccd4e2;border-radius:9px;background:#fbfcfe;color:#16233c}
 input[type=number]:focus{outline:none;border-color:#7a4a1f;background:#fff}
@@ -47,8 +48,8 @@ button:disabled{background:#c3cad6}
 
 <header>
   <h1>BREAD ORDER</h1>
-  <div class="hint">已經填好平日常用數量 — 改咗要改嘅,撳綠色掣發出<br>
-  Usual quantities pre-filled. Adjust, then send.</div>
+  <div class="hint">逐樣填數量,填完撳綠色掣發出 &mdash; 灰色「平日」係參考,唔會自動填<br>
+  Enter each quantity. The grey number is the usual amount, for reference only.</div>
   <div class="meta">
     <input id="when" type="date" onchange="upd()">
     <span id="dow"></span>
@@ -57,15 +58,15 @@ button:disabled{background:#c3cad6}
 </header>
 
 <div class="wrap">
-<label class="row"><span class="nm">White Sourdough</span><input type="number" inputmode="numeric" min="0" step="1" data-n="White Sourdough" data-def="3" value="3" oninput="upd()"></label>
-<label class="row"><span class="nm">Wholemeal</span><input type="number" inputmode="numeric" min="0" step="1" data-n="Wholemeal" data-def="1" value="1" oninput="upd()"></label>
-<label class="row"><span class="nm">White Cottage</span><input type="number" inputmode="numeric" min="0" step="1" data-n="White Cottage" data-def="1" value="1" oninput="upd()"></label>
-<label class="row"><span class="nm">Soy &amp; Linseed</span><input type="number" inputmode="numeric" min="0" step="1" data-n="Soy &amp; Linseed" data-def="1" value="1" oninput="upd()"></label>
-<label class="row"><span class="nm">Raisin Toast</span><input type="number" inputmode="numeric" min="0" step="1" data-n="Raisin Toast" data-def="1" value="1" oninput="upd()"></label>
-<label class="row"><span class="nm">Burger Bun</span><input type="number" inputmode="numeric" min="0" step="1" data-n="Burger Bun" data-def="2" value="2" oninput="upd()"></label>
-<label class="row"><span class="nm">Slider</span><input type="number" inputmode="numeric" min="0" step="1" data-n="Slider" data-def="1" value="1" oninput="upd()"></label>
-<label class="row"><span class="nm">Croissant</span><input type="number" inputmode="numeric" min="0" step="1" data-n="Croissant" data-def="9" value="9" oninput="upd()"></label>
-<label class="row"><span class="nm">Almond Croissant</span><input type="number" inputmode="numeric" min="0" step="1" data-n="Almond Croissant" data-def="6" value="6" oninput="upd()"></label>
+<label class="row"><span class="nm">White Sourdough<span class="usual">平日 3</span></span><input type="number" inputmode="numeric" min="0" step="1" data-n="White Sourdough" placeholder="" oninput="upd()"></label>
+<label class="row"><span class="nm">Wholemeal<span class="usual">平日 1</span></span><input type="number" inputmode="numeric" min="0" step="1" data-n="Wholemeal" placeholder="" oninput="upd()"></label>
+<label class="row"><span class="nm">White Cottage<span class="usual">平日 1</span></span><input type="number" inputmode="numeric" min="0" step="1" data-n="White Cottage" placeholder="" oninput="upd()"></label>
+<label class="row"><span class="nm">Soy &amp; Linseed<span class="usual">平日 1</span></span><input type="number" inputmode="numeric" min="0" step="1" data-n="Soy &amp; Linseed" placeholder="" oninput="upd()"></label>
+<label class="row"><span class="nm">Raisin Toast<span class="usual">平日 1</span></span><input type="number" inputmode="numeric" min="0" step="1" data-n="Raisin Toast" placeholder="" oninput="upd()"></label>
+<label class="row"><span class="nm">Burger Bun<span class="usual">平日 2</span></span><input type="number" inputmode="numeric" min="0" step="1" data-n="Burger Bun" placeholder="" oninput="upd()"></label>
+<label class="row"><span class="nm">Slider<span class="usual">平日 1</span></span><input type="number" inputmode="numeric" min="0" step="1" data-n="Slider" placeholder="" oninput="upd()"></label>
+<label class="row"><span class="nm">Croissant<span class="usual">平日 9</span></span><input type="number" inputmode="numeric" min="0" step="1" data-n="Croissant" placeholder="" oninput="upd()"></label>
+<label class="row"><span class="nm">Almond Croissant<span class="usual">平日 6</span></span><input type="number" inputmode="numeric" min="0" step="1" data-n="Almond Croissant" placeholder="" oninput="upd()"></label>
 <textarea id="note" rows="3" placeholder="特別備註 — 有其他要 order 嘅寫喺呢度&#10;Special notes" oninput="upd()"></textarea>
 </div>
 
@@ -74,7 +75,7 @@ button:disabled{background:#c3cad6}
   <button id="send" onclick="send()">用 WhatsApp 發出 &rarr;</button>
   <div class="two">
     <button onclick="copyTxt()">複製文字 Copy</button>
-    <button class="red" onclick="resetAll()">回復常用數量</button>
+    <button class="red" onclick="clearAll()">清空 Clear</button>
   </div>
   <div id="saved">自動儲存喺呢部手機 &middot; auto-saved on this phone</div>
 </footer>
@@ -106,7 +107,9 @@ function dowOf(v){
 
 function save(){
   var o = {who: who.value, when: when.value, note: note.value, q: {}};
-  for (var i = 0; i < qty.length; i++) o.q[qty[i].dataset.n] = qty[i].value;
+  for (var i = 0; i < qty.length; i++){
+    if (qty[i].value !== '') o.q[qty[i].dataset.n] = qty[i].value;
+  }
   try { localStorage.setItem(KEY, JSON.stringify(o)); } catch(e){}
 }
 
@@ -136,8 +139,9 @@ function picked(){
 
 function upd(){
   for (var i = 0; i < qty.length; i++){
-    var n = Number(qty[i].value);
-    qty[i].parentNode.className = (qty[i].value !== '' && n > 0) ? 'row on' : 'row zero';
+    if (qty[i].value === '') qty[i].parentNode.className = 'row';
+    else if (Number(qty[i].value) > 0) qty[i].parentNode.className = 'row on';
+    else qty[i].parentNode.className = 'row zero';
   }
   document.getElementById('dow').textContent = dowOf(when.value);
   var nt = note.value.trim();
@@ -146,7 +150,7 @@ function upd(){
   for (var j = 0; j < p.length; j++) units += p[j].q;
   document.getElementById('cnt').innerHTML = p.length
     ? '<b>' + p.length + '</b> 樣 &middot; 共 <b>' + units + '</b> 件'
-    : '全部係零';
+    : '仲未填 &middot; nothing entered yet';
   document.getElementById('send').disabled = (p.length === 0 && !nt);
   save();
 }
@@ -174,9 +178,9 @@ function copyTxt(){
   } else { prompt('複製呢段文字:', t); }
 }
 
-function resetAll(){
-  if (!confirm('回復平日常用數量?')) return;
-  for (var i = 0; i < qty.length; i++) qty[i].value = qty[i].dataset.def;
+function clearAll(){
+  if (!confirm('清空全部數量同備註?')) return;
+  for (var i = 0; i < qty.length; i++) qty[i].value = '';
   note.value = '';
   when.value = todayStr();
   upd();
